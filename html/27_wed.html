@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern CSS Layout</title>
+    <style>
+        :root {
+            --page-bg: #e2e8f0;
+            --main-box-bg: #ffffff;
+            --shape-color: #3b82f6;
+            --main-width: 700px;
+            --spacing-large: 40px;
+            --spacing-medium: 30px;
+            --upper-height: 100px;
+            --middle-height: calc(var(--upper-height) * 2); 
+            --circle-size: 200px;
+            --radius-large: 20px;
+            --radius-small: 15px;
+            --radius-circle: 50%;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--page-bg);
+        }
+
+        .main-box {
+            width: var(--main-width);
+            background-color: var(--main-box-bg);
+            padding: var(--spacing-large);
+            border-radius: var(--radius-large);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-large);
+        }
+
+        .upper-part {
+            display: flex;
+            gap: var(--spacing-medium);
+            height: var(--upper-height);
+        }
+
+        .semi-rect {
+            flex: 1;
+            background-color: var(--shape-color);
+            border-radius: var(--radius-small);
+        }
+
+        .middle-part {
+            display: flex;
+            justify-content: center;
+        }
+
+        .middle-rect {
+            width: 80%;
+            height: var(--middle-height);
+            background-color: var(--shape-color);
+            border-radius: var(--radius-small);
+        }
+
+        .lower-part {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 10px;
+        }
+
+        .circle {
+            width: var(--circle-size);
+            height: var(--circle-size);
+            background-color: var(--shape-color);
+            border-radius: var(--radius-circle);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-box">
+        <div class="upper-part">
+            <div class="semi-rect"></div>
+            <div class="semi-rect"></div>
+        </div>
+        <div class="middle-part">
+            <div class="middle-rect"></div>
+        </div>
+        <div class="lower-part">
+            <div class="circle"></div>
+        </div>
+    </div>
+
+</body>
+</html>

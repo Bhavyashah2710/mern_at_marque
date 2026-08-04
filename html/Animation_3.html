@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>3D Cube</title>
+
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #0d0d0d;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    /* Yahan se 3D scene shuru hota hai */
+    .scene {
+      perspective: 600px;
+    }
+
+    .cube {
+      width: 150px;
+      height: 150px;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: rotateCube 6s linear infinite;
+    }
+
+    @keyframes rotateCube {
+      0%   { transform: rotateX(0deg)   rotateY(0deg); }
+      100% { transform: rotateX(360deg) rotateY(360deg); }
+    }
+
+    /* Har face ki basic style */
+    .face {
+      width: 150px;
+      height: 150px;
+      position: absolute;
+      border: 2px solid white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 28px;
+      font-family: Arial;
+      font-weight: bold;
+      color: white;
+      opacity: 0.85;
+    }
+
+    /* 6 faces — aage peeche upar neeche left right */
+    .front  { background: rgba(255, 45,  85,  0.4); transform: translateZ(75px); }
+    .back   { background: rgba(0,   229, 255, 0.4); transform: rotateY(180deg) translateZ(75px); }
+    .left   { background: rgba(170, 255, 0,   0.4); transform: rotateY(-90deg) translateZ(75px); }
+    .right  { background: rgba(255, 159, 0,   0.4); transform: rotateY(90deg)  translateZ(75px); }
+    .top    { background: rgba(191, 0,   255, 0.4); transform: rotateX(90deg)  translateZ(75px); }
+    .bottom { background: rgba(255, 255, 0,   0.4); transform: rotateX(-90deg) translateZ(75px); }
+
+  </style>
+</head>
+<body>
+
+  <div class="scene">
+    <div class="cube">
+      <div class="face front">CSS</div>
+      <div class="face back">3D</div>
+      <div class="face left">HTML</div>
+      <div class="face right">JS</div>
+      <div class="face top">MERN</div>
+      <div class="face bottom">DSA</div>
+    </div>
+  </div>
+
+</body>
+</html>

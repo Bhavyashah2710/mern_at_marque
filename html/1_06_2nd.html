@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .Container{
+         display : grid;
+           grid-template-columns : 50px 50px 50px 50px ;
+           grid-template-rows : 50px 50px 50px ;        
+              gap : 16px;   
+    }
+    .item1{
+        background-color : #f30808;      
+        color : white;
+        padding : 16px;
+        grid-column : 1/3;
+        grid-row : 1/3;
+    }
+    .item2{
+        background-color : #f30808;      
+        color : white;
+        padding : 16px;
+    }
+    .item3{
+        background-color : #f30808;      
+        color : white;
+        padding : 16px;
+        grid-column : 1/-1;
+    }
+     
+ </style>
+</head>
+<body>
+    <div class = "Container">
+        <div class="item1"> A</div>
+        <div class="item2"> B</div>
+        <div class="item2"> C</div>
+        <div class="item2"> D</div>
+        <div class="item2"> E</div>
+        <div class="item3"> F</div>
+     </div>
+</body>
+</html>
