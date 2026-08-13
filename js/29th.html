@@ -1,0 +1,30 @@
+ // rite  code to genrte  function for tking user  name nd city and print them in console//
+ // generate a function of array taht take input from ueser and print them in console//
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ </head>
+ <body>
+    <script>
+        // function getUserInfo() {   
+        //     const name = prompt("Enter your name:");
+        //     const city = prompt("Enter your city:");
+        //     console.log(`My Name is ${name} and I live in ${city}`);
+        // }
+        // getUserInfo();
+        function getUserArray() {
+            const userArray = [];
+            const numberOfUsers = parseInt(prompt("How many users do you want to enter?"));
+            for (let i = 0; i < numberOfUsers; i++) {
+                const userName = prompt(`Enter name for user ${i + 1}:`);
+                userArray.push(userName);
+            }
+            console.log("User Array:", userArray);
+        }   
+        getUserArray();               
+    </script>
+ </body>
+ </html>

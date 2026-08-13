@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let employees = [
+    
+ {
+        name: "rohan",
+        salary: 5000,
+        age: 14,
+        country: "london",
+        department: "Finance",
+        content_liked: ["daily_vlogs", "science", "art", "motivational"],
+        products_in_cart: [
+            { Pname: "Shirt", cost: 500 },
+            { Pname: "Headphones", cost: 1800 }
+        ]
+    },
+{
+        name: "bhupendr",
+        salary: 7000,
+        age: 50,
+        country: "india",
+        department: "IT",
+        content_liked: ["food", "Travel_Vlogs", "art", "storytelling"],
+        products_in_cart: [
+            { Pname: "Shirt", cost: 500 },
+            { Pname: "Shoes", cost: 2500 },
+            { Pname: "Watch", cost: 3500 }
+        ]
+    },
+   
+    {
+        name: "kartik",
+        salary: 300,
+        age: 2,
+        country: "america",
+        department: "HR",
+        content_liked: ["sports", "politics", "online_gaming", "science"],
+        products_in_cart: [
+            { Pname: "Football", cost: 1200 },
+            { Pname: "Shoes", cost: 2500 }
+        ]
+    },
+    {
+        name: "suraj",
+        salary: 200,
+        age: 19,
+        country: "russia",
+        department: "Finance",
+        content_liked: ["Travel_Vlogs", "bike", "politics", "food"],
+        products_in_cart: [
+            { Pname: "Bike Helmet", cost: 2200 },
+            { Pname: "Watch", cost: 3500 }
+        ]
+    },
+    {
+        name: "aryan",
+        salary: 10000,
+        age: 70,
+        country: "japan",
+        department: "HR",
+        content_liked: ["history", "motivational", "news", "science"],
+        products_in_cart: [
+            { Pname: "Books", cost: 900 },
+            { Pname: "Laptop", cost: 65000 }
+        ]
+    },
+    {
+        name: "aryan",
+        salary: 8800,
+        age: 40,
+        country: "japan",
+        department: "IT",
+        content_liked: ["coding", "technology", "science", "art"],
+        products_in_cart: [
+            { Pname: "Laptop", cost: 65000 },
+            { Pname: "Mouse", cost: 700 },
+            { Pname: "Keyboard", cost: 1500 }
+        ]
+    },
+    {
+        name: "jatin",
+        salary: 10000,
+        age: 12,
+        country: "russia",
+        department: "HR",
+        content_liked: ["gaming", "sports", "anime", "online_gaming"],
+        products_in_cart: [
+            { Pname: "Gaming Mouse", cost: 2200 },
+            { Pname: "Headphones", cost: 1800 }
+        ]
+    },
+    {
+        name: "aaditya",
+        salary: 2000,
+        age: 19,
+        country: "india",
+        department: "Marketing",
+        content_liked: ["marketing", "business", "motivational", "storytelling"],
+        products_in_cart: [
+            { Pname: "Notebook", cost: 150 },
+            { Pname: "Pen", cost: 50 },
+            { Pname: "Shirt", cost: 500 }
+        ]
+    },
+    {
+        name: "sachi",
+        salary: 1000,
+        age: 2,
+        country: "uganda",
+        department: "Finance",
+        content_liked: ["cartoons", "food", "science", "daily_vlogs"],
+        products_in_cart: [
+            { Pname: "Chocolate", cost: 100 },
+            { Pname: "Books", cost: 900 }
+        ]
+    },
+    {
+        name: "khushi",
+        salary: 3500,
+        age: 99,
+        country: "brazil",
+        department: "IT",
+        content_liked: ["Travel_Vlogs", "dance", "food", "art"],
+        products_in_cart: [
+            { Pname: "Dress", cost: 1800 },
+            { Pname: "Watch", cost: 3500 },
+            { Pname: "Shoes", cost: 2500 }
+        ]
+    },
+    {
+        name: "parul",
+        salary: 5000,
+        age: 34,
+        country: "jamaica",
+        department: "CEO",
+        content_liked: ["leadership", "business", "technology", "motivational"],
+        products_in_cart: [
+            { Pname: "Laptop", cost: 65000 },
+            { Pname: "Watch", cost: 3500 },
+            { Pname: "Phone", cost: 45000 }
+        ]
+    }
+];
+// in this code snippet , I want to calculate the average cost of all products in the cart of all employees and print it in the console using for each loop;
+let totalProducts = 0;  
+let totalCost = 0;      
+employees.forEach((employee) => {
+    employee.products_in_cart.forEach((product) => {    
+        totalProducts++;  
+        totalCost += product.cost;  
+    });
+});
+let averageCost = totalCost / totalProducts;   
+console.log("Average cost of all products in the cart of all employees: " + averageCost); 
+// Check if every employee can buy the most expensive product
+// after their salary is reduced by 50%
+
+employees.forEach((employee) => {
+
+    const mostExpensiveProduct = employee.products_in_cart.reduce(
+        (max, product) => {
+            return product.cost > max.cost ? product : max;
+        },
+        { cost: 0 }
+    );
+
+    const reducedSalary = employee.salary * 0.5;
+
+    if (reducedSalary >= mostExpensiveProduct.cost) {
+        console.log(`${employee.name} can buy the most expensive product with their reduced salary.`);
+    } else {
+        console.log(`${employee.name} cannot buy the most expensive product with their reduced salary.`);
+    }
+
+});
+// I want an array of all employees who like "art"
+const employeesWhoLikeArt = employees.filter((employee) => employee.content_liked.includes("art"));
+console.log("Employees who like 'art':", employeesWhoLikeArt);
+// I want an array of all employees who have a shirt or shoes in thier cart and also find the total how much the money the companieess's employee spend on thesse twwo things
+const employeesWithShirtOrShoes = employees.filter((employee) => {
+    return employee.products_in_cart.some((product) => product.Pname === "Shirt" || product.Pname === "Shoes");
+});
+const totalSpentOnShirtsAndShoes = employeesWithShirtOrShoes.reduce((total, employee) => {
+    const products = employee.products_in_cart.filter((product) => product.Pname === "Shirt" || product.Pname === "Shoes");
+    const sum = products.reduce((acc, product) => acc + product.cost, 0);
+    return total + sum;
+}, 0);
+console.log("Employees with Shirt or Shoes in their cart:", employeesWithShirtOrShoes);
+console.log("Total amount spent on Shirts and Shoes:", totalSpentOnShirtsAndShoes);
+let  contenttype=[];
+employees.forEach((employee) => {
+    employee.content_liked.forEach((content) => {
+        if (!contenttype.includes(content)) {
+            contenttype.push(content);
+        }
+    });
+}); 
+console.log("Content types liked by employees:", contenttype);      
+console.log(contenttype)
+let a=[]
+// I want to find : traverse wwhole arry and than go to content_liked and no check that where it iss in the array contentttype
+// and then take aa um of aall content like taht ay thaat i+1 your percentage of alaray they use and then 
+//count that how much thge spent on that content and then print it in the console for each employee
+employees.forEach((employee) => {
+    console.log("\nEmployee:", employee.name);
+    employee.content_liked.forEach((content) => {
+        let index = contenttype.indexOf(content);
+        let percentage = index + 1;
+        let usedSalary = (employee.salary * percentage) / 100;
+        let remainingSalary = employee.salary - usedSalary;
+        console.log(
+            `${content} -> ${percentage}% | Used Salary: ₹${usedSalary} | Remaining Salary: ₹${remainingSalary}`
+        );
+    });
+});
+// I want to find the totaal amount spent on content_like and products by all employees whoes departmrnt is "IT"
+const itEmployees = employees.filter((employee) => employee.department === "IT");
+const totalSpentByItEmployees = itEmployees.reduce((total, employee) => {
+    const contentSpent = employee.content_liked.reduce((acc, content) => {
+        const index = contenttype.indexOf(content);
+        const percentage = index + 1;
+        return acc + (employee.salary * percentage) / 100;
+    }, 0);
+    const productSpent = employee.products_in_cart.reduce((acc, product) => acc + product.cost, 0);
+    return total + contentSpent + productSpent;
+}, 0);
+console.log("Total amount spent by IT employees:", totalSpentByItEmployees);
+//I want an array of all employees whose department is "IT" and print it in the console
+const employee_IT = employees.filter((employee) => employee.department === "IT");
+console.log("Employees from IT department:", employee_IT);
+</script>
+</body>
+</html>

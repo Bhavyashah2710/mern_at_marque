@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Map Questions</title>
+</head>
+<body>
+
+<script>
+
+    // 1. Add 1000 to every element
+    let arr1 = [5, 10, 15];
+    console.log("Before Add 1000:", arr1);
+
+    let add1000 = arr1.map(num => num + 1000);
+    console.log("After Add 1000:", add1000);
+
+
+    // 2. Convert [5,10,15] into [10,20,30]
+    let arr2 = [5, 10, 15];
+    console.log("Before Doubling:", arr2);
+
+    let doubled = arr2.map(num => num * 2);
+    console.log("After Doubling:", doubled);
+
+
+    // 3. Convert ["cat","dog","lion"] into uppercase
+    let animals = ["cat", "dog", "lion"];
+    console.log("Before Uppercase:", animals);
+
+    let upperAnimals = animals.map(animal => animal.toUpperCase());
+    console.log("After Uppercase:", upperAnimals);
+
+
+    // 4. Products
+    const products = [
+        { name: "Laptop", price: 50000 },
+        { name: "Phone", price: 25000 }
+    ];
+
+    console.log("Before Products:", products);
+
+    let prices = products.map(product => product.price);
+    console.log("Only Prices:", prices);
+
+    let pricesWithGST = products.map(product => product.price + 200);
+    console.log("Prices After GST:", pricesWithGST);
+
+
+    // 5. Convert ["rahul","aman"] to objects
+    let names = ["rahul", "aman"];
+    console.log("Before Conversion:", names);
+
+    let users = names.map(name => ({
+        name: name.charAt(0).toUpperCase() + name.slice(1)
+    }));
+
+    console.log("After Conversion:", users);
+
+</script>
+
+</body>
+</html>

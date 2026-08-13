@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+
+let employees = [
+            {name:"bhupendr",salary:70 , age:50, country : "india",department:"IT"},
+            {name:"rohan", salary:50, age:14, country: "london" , department:"Finance"},
+            {name: "kartik", salary:3, age:2, country : "amarica",department:"HR"},
+            {name:"suraj",salary:2, age : 19 , country:"russia",department:"Finance"},
+            {name:"aryan",salary:1,age:70 , country : "japan",department:"HR"},
+            {name:"aryan",salary:88,age:40 , country : "japan",department:"IT"},
+            {name: "jatin", salary:100, age:12, country:"russia",department:"HR"},
+            {name:"aaditya", salary:20, age : 19, country : "india",department:"Marketing"},
+            {name: "sachi", salary:1, age: 2 , country : "uganda",department:"Finance"},
+            {name: "khushi", salary : 35, age:99, country : "brazil",department:"IT"},
+            {name: "parul", salary:500, age:34, country: "zamaika", department:"CEO"}
+            
+        ]  
+
+        // print all employee' name and department
+        employees.forEach((element) => {
+            console.log(`The employee whose name is ${element.name} works in the ${element.department} department. His/Her salary is ${element.salary}.`);
+        });
+        employees.forEach((element) => {
+            if(element.department=="HR" && element.salary>50){
+                console.log(`The employee whose name is ${element.name} has a salary greater than 50. His/Her salary is ${element.salary}.`);
+            }
+        });
+        let totalSalary = 0;
+        employees.forEach((item)=>{
+            totalSalary += item.salary;
+        });
+        console.log(`The total salary of all employees is ${totalSalary}`);
+// I want records of salary country wise like in india  : 90 using for each loop;
+        let salaryByCountry = {};
+        employees.forEach((item) => {
+            if(salaryByCountry[item.country]){
+                salaryByCountry[item.country] += item.salary;
+            } else {
+                salaryByCountry[item.country] = item.salary;
+            }
+        });
+        console.log("Salary by country:", salaryByCountry);
+
+        employees.forEach((element) =>{
+            let s = element.name;   
+            if(s.charAt(0)=="s" ){
+                console.log(`The employee whose name starts with 's' is ${element.name}.`);
+            }
+        });
+        employees.forEach((items)=>{
+            if(items.age>18){
+                console.log(`${items.name} works in the ${items.department} department.`);
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+//print the names followed by their departments 
+use templete litterals to print (the employee is from IT department and his salary is 50)
+calculate what is total amount that is going to the employees 
+print how much salary is going to each country 'india 90'
+print the name and country of those employees whose name starts with 's' 
+how many adults are in each department

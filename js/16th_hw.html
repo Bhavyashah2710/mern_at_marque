@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Random Div Color</title>
+
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+    }
+
+    body{
+        height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        background:white;
+    }
+
+    #box{
+        width:250px;
+        height:250px;
+        border:2px solid black;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        font-size:24px;
+        font-weight:bold;
+        color:white;
+    }
+</style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+function randomColor() {
+    let color = "#";
+    for(let i = 0; i < 6; i++){
+        color += "0123456789ABCDEF"[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+document.getElementById("box").style.backgroundColor = randomColor();
+</script>
+</body>
+</html>

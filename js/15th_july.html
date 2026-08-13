@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Counter Follow Mouse</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    width:100vw;
+    height:100vh;
+    overflow:hidden;
+    background:#f2f2f2;
+}
+
+/* Counter Box */
+#countBox{
+    width:220px;
+    height:120px;
+    background:black;
+    color:yellow;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:60px;
+    font-weight:bold;
+    border-radius:10px;
+    position:absolute;
+    left:50%;
+    top:40%;
+    transform:translate(-50%,-50%);
+    transition:left 0.05s linear, top 0.05s linear;
+}
+
+/* Buttons */
+.buttons{
+    position:fixed;
+    bottom:50px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    gap:15px;
+}
+
+button{
+    padding:12px 20px;
+    border:none;
+    border-radius:6px;
+    font-size:16px;
+    color:white;
+    cursor:pointer;
+}
+
+#increase{
+    background:green;
+}
+
+#decrease{
+    background:red;
+}
+
+#reset{
+    background:blue;
+}
+
+button:hover{
+    opacity:0.8;
+}
+</style>
+
+</head>
+<body>
+
+<div id="countBox">0</div>
+
+<div class="buttons">
+    <button id="increase">Increase</button>
+    <button id="decrease">Decrease</button>
+    <button id="reset">Reset</button>
+</div>
+
+<script>
+
+let count = 0;
+
+let box = document.getElementById("countBox");
+
+// Increase
+document.getElementById("increase").addEventListener("click",function(){
+    count++;
+    box.innerText = count;
+});
+
+// Decrease
+document.getElementById("decrease").addEventListener("click",function(){
+    if(count > 0){
+        count--;
+        box.innerText = count;
+    }
+});
+
+// Reset
+document.getElementById("reset").addEventListener("click",function(){
+    count = 0;
+    box.innerText = count;
+});
+
+// Follow Mouse
+document.addEventListener("mousemove",function(e){
+
+    box.style.left = e.clientX + "px";
+    box.style.top = e.clientY + "px";
+    box.style.transform = "translate(-50%, -50%)";
+
+});
+
+</script>
+
+</body>
+</html>

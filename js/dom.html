@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Document Object Model</h1>
+    <p>The Document Object Model (DOM) is a programming interface for web documents. It represents the page so that programs can change the document structure, style, and content. The DOM represents the document as nodes and objects; that way, programming languages can interact with the page.</p>
+    <h2>Key Features of the DOM</h2>
+    <p>The DOM provides a structured representation of the document as a tree of objects. Each object corresponds to a part of the document, such as an element or attribute. This allows developers to manipulate the content and structure of web pages dynamically.</p>
+    <h3>Example of DOM Manipulation</h3>
+    <p>For example, you can use JavaScript to change the text of an element:</p>
+    <h4>JavaScript Example:</h4>
+    <p>hello</p>
+    <script>
+        console.dir(document);
+        let heading0= document.querySelector('h0')
+        let heading1= document.querySelector('h1')
+        let heading2= document.querySelector('h2')
+        let heading3= document.querySelector('h3')
+
+        // heading.forEach((h1) => {
+        //     h1.style.color = 'red';
+        // });
+        heading1.style.backgroundColor = 'lightblue';
+        heading2.style.backgroundColor = 'lightblue';
+        heading3.style.backgroundColor = 'lightblue';
+        heading0.style.backgroundColor = 'lightblue';
+        
+    </script>
+</body>
+</html>

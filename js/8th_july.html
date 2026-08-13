@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // let person = {
+        //     name: "John",
+        //     age: 30,
+        //     city: "New York"
+        // };
+        // // deep copy using JSON methods
+        // let person_deepCopy = JSON.parse(JSON.stringify(person));
+        // console.log(person_deepCopy);
+        // let person_dcopy = structuredClone(person);
+        // console.log(person_dcopy);
+        
+        // class Person {
+        //     constructor(name, age, salary) {
+        //         this.name = name;
+        //         this.age = age;
+        //         this.salary = salary ;
+        //     }
+        // }
+        
+        // let person_obj = new Person("Bhavya", 20, 50000);
+        // console.log(person_obj);
+        // let person_obj_2 = new Person("v", 20, 60000);
+        // console.log(person_obj_2);
+
+         class Car{
+            constructor(company , year , model , tyers){
+                this.company = company;
+                this.year = year;
+                this.model = model;
+                this.tyers = tyers;
+            }
+            startTheCar(){
+                console.log(this.company + " is starting");
+               console.log("le bhaiye OOM PHHOOO");
+                console.log("dharrate gad rahi hai");
+         }
+        }
+
+         let car1 = new Car("BMW", 2020, "X5", 4);
+         console.log(car1);
+        //  let car2 = new Car("Audi", 2021, "A6", 4);
+        //  console.log(car2);
+        //  let car3 = new Car("Mercedes", 2022, "C-Class", 4);
+        //  console.log(car3);
+        //  let car4 = new Car("Toyota", 2023, "Camry", 4);
+        //  console.log(car4);
+        // class Student{
+        //     constructor(name , age , [fatherName , motherName] , mis_id  , [hobbies]){
+        //         this.name = name;
+        //         this.age = age;
+        //         this.fatherName = fatherName;
+        //         this.motherName = motherName;
+        //         this.mis_id = mis_id;
+        //         this.hobbies = hobbies;
+        //     }
+        // }
+        // let student1 = new Student("Bhavya" , 20 , ["vishal", "Vaishali"] , "12345" , ["sleeping" , "cycling"] );
+        // console.log(student1);
+
+        let car_obj = new Car("Audi", 2021, "A6", 4);
+        car_obj.startTheCar();
+
+
+
+
+        </script>
+</body>
+</html>

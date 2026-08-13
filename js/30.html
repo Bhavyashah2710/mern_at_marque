@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let numbers = [1, 2, 3, 4, 5];
+        console.log("Original array:", numbers);
+        let shifted = numbers.shift(0);
+        console.log("After shift:", numbers);
+        console.log("Shifted element:", shifted);
+        let popped = numbers.pop();
+        console.log("After pop:", numbers);
+        console.log("Popped element:", popped);
+        numbers.push(6);
+        console.log("After push:", numbers);
+        let sliced = numbers.slice(1, 4);
+        console.log("After slice:", sliced);
+        
+        let spliced = numbers.splice(1, 2);
+        console.log("After splice:", numbers);
+        console.log("Spliced elements:", spliced); 
+
+
+        let arr = [
+            {name:"bhupendr",salary:70 , age:50, country : "india"},
+            {name:"rohan", salary:50, age:14, country: "london" },
+            {name: "kartik", salary:3, age:2, country : "amarica"},
+            {name:"suraj",salary:2, age : 19 , country:"russia"},
+            {name:"aryan",salary:1,age:70 , country : "japan"},
+            {name:"aryan",salary:88,age:40 , country : "japan"},
+            {name: "jatin", salary:100, age:12, country:"russia"},
+            {name:"aaditya", salary:20, age : 19, country : "india"},
+            {name: "sachi", salary:1, age: 2 , country : "uganda"},
+            {name: "khushi", salary : 35, age:99, country : "brazil"}            
+        ]   
+        arr.forEach((element) => {
+            console.log(` The employee whoes Name is ${element.name} , his Salary is ${element.salary}, is  ${element.age} yearss old . is live in   ${element.country}`);
+        });
+        let brr = [4,5,1,2,3,4,9,7,8,5,6,7]
+        brr.forEach((element)=> {
+            if(element%2==0) console.log(element);
+        });
+        let dult =  arr.find((item)=>{
+            return item.age>18 && item.salary>40
+        });
+        console.log(dult)
+        let adult = arr.find((item)=>{
+            let s = item.name;
+            return s.length==5 && item.age>18 && item.salary>=50
+        });
+        console.log(adult);
+        const employees = arr.map((emp) =>{
+            return emp.salary>50;
+        });
+        console.log(employees);
+        const doubled = arr.map((item )=>{
+            return item*2;
+        });
+        console.log(doubled);
+        const double = arr.map((item)=>{
+            let b = item.name;
+            b= b.toUpperCase();
+            return b;
+        });
+        console.log(double);
+        const newsal = arr.map((item)=>{
+            return item.salary+100;
+        });
+        console.log(newsal);
+        console newarr = arr.map((item)=>{
+            return item
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Draw & Erase</title>
+
+<style>
+    body{
+        margin:0;
+        background:white;
+        overflow:hidden;
+    }
+
+    .toolbar{
+        position:fixed;
+        top:10px;
+        left:10px;
+        z-index:1000;
+    }
+
+    button{
+        padding:10px 20px;
+        margin-right:10px;
+        cursor:pointer;
+    }
+
+    .dot{
+        width:30px;
+        height:30px;
+        border-radius:50%;
+        position:absolute;
+    }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+    <button id="draw">Draw</button>
+    <button id="erase">Erase</button>
+    <button id="stop">Stop</button>
+     <button id="red">Red</button>
+    <button id="green">Green</button>
+    <button id="yellow">Yellow</button>
+</div>
+
+<script>
+let drawing = false;
+let mousePressed = false;
+let color = "black";
+
+document.getElementById("draw").addEventListener("click", () => {
+    drawing = true;
+    color = "black";
+});
+
+document.getElementById("erase").addEventListener("click", () => {
+    drawing = true;
+    color = "white";
+});
+
+document.getElementById("red").addEventListener("click", () => {
+    drawing = true;
+    color = "red";
+});
+
+document.getElementById("green").addEventListener("click", () => {
+    drawing = true;
+    color = "green";
+});
+
+document.getElementById("yellow").addEventListener("click", () => {
+    drawing = true;
+    color = "yellow";
+});
+
+document.getElementById("stop").addEventListener("click", () => {
+    drawing = false;
+});
+
+// Mouse press
+document.addEventListener("mousedown", () => {
+    mousePressed = true;
+});
+
+// Mouse release
+document.addEventListener("mouseup", () => {
+    mousePressed = false;
+});
+
+// Draw only while mouse button is pressed
+document.addEventListener("mousemove", (e) => {
+
+    if (!drawing || !mousePressed) return;
+
+    let dot = document.createElement("div");
+    dot.className = "dot";
+
+    dot.style.left = e.pageX + "px";
+    dot.style.top = e.pageY + "px";
+    dot.style.backgroundColor = color;
+
+    document.body.appendChild(dot);
+
+});
+</script>
+</body>
+</html>

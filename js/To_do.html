@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To Do List</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+body{
+    background:#f4f4f4;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+.container{
+    width:500px;
+    background:white;
+    padding:20px;
+    border-radius:8px;
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+h2{
+    text-align:center;
+    margin-bottom:20px;
+}
+.input-box{
+    display:flex;
+    gap:10px;
+    margin-bottom:20px;
+}
+input[type="text"]{
+    flex:1;
+    padding:8px;
+    border:1px solid gray;
+    border-radius:4px;
+}
+button{
+    padding:8px 12px;
+    border:none;
+    background:#3498db;
+    color:white;
+    border-radius:4px;
+    cursor:pointer;
+}
+button:hover{
+    background:#2980b9;
+}
+ul{
+    list-style:none;
+}
+li{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border:1px solid #ddd;
+    padding:10px;
+    margin-bottom:10px;
+    border-radius:5px;
+}
+.task{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+.done{
+    text-decoration:line-through;
+    color:gray;
+}
+.actions button{
+    margin-left:5px;
+}
+.edit{
+    background:orange;
+}
+.edit:hover{
+    background:darkorange;
+}
+.delete{
+    background:red;
+}
+.delete:hover{
+    background:darkred;
+}
+.up{
+    background:green;
+}
+.up:hover{
+    background:darkgreen;
+}
+.down{
+    background:purple;
+}
+.down:hover{
+    background:indigo;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+    <h2>To Do List</h2>
+
+    <div class="input-box">
+        <input type="text" id="taskInput" placeholder="Enter task">
+        <button onclick="addTask()">Add</button>
+    </div>
+
+    <ul id="taskList"></ul>
+</div>
+
+<script>
+
+function addTask(){
+
+    let input=document.getElementById("taskInput");
+    let text=input.value.trim();
+
+    if(text==""){
+        alert("Enter a task");
+        return;
+    }
+
+    let li=document.createElement("li");
+
+    li.innerHTML=`
+        <div class="task">
+            <input type="checkbox" onchange="toggleDone(this)">
+            <span>${text}</span>
+        </div>
+
+        <div class="actions">
+            <button class="edit" onclick="editTask(this)">Edit</button>
+            <button class="delete" onclick="deleteTask(this)">Delete</button>
+            <button class="up" onclick="swapWithUpperTask(this)">Up</button>
+            <button class="down" onclick="swapWithLowerTask(this)">Down</button>
+        </div>
+    `;
+
+    document.getElementById("taskList").appendChild(li);
+
+    input.value="";
+}
+
+function deleteTask(button){
+    button.parentElement.parentElement.remove();
+}
+
+function editTask(button){
+
+    let span=button.parentElement.parentElement.querySelector("span");
+
+    let newTask=prompt("Edit Task",span.innerText);
+
+    if(newTask!=null && newTask.trim()!=""){
+        span.innerText=newTask;
+    }
+}
+
+function toggleDone(box){
+
+    let span=box.nextElementSibling;
+
+    if(box.checked){
+        span.classList.add("done");
+    }
+    else{
+        span.classList.remove("done");
+    }
+}                      
+function swapWithUpperTask(button){
+
+    let current=button.parentElement.parentElement;
+    let previous=current.previousElementSibling;
+
+    if(previous){
+        current.parentElement.insertBefore(current,previous);
+    }
+}
+
+function swapWithLowerTask(button){
+
+    let current=button.parentElement.parentElement;
+    let next=current.nextElementSibling;
+
+    if(next){
+        current.parentElement.insertBefore(next,current);
+    }
+}
+
+</script>
+
+</body>
+</html>
