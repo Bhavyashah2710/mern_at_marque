@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mera Space Page</title>
+
+  <style>
+    /* =====================
+       Basic Reset
+    ===================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #0a0a1a;
+      color: white;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* =====================
+       Stars background
+    ===================== */
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 2s infinite alternate;
+    }
+
+    /* Alag alag sizes aur positions */
+    .star:nth-child(1)  { width: 2px; height: 2px; top: 10%; left: 15%; animation-delay: 0s; }
+    .star:nth-child(2)  { width: 3px; height: 3px; top: 20%; left: 70%; animation-delay: 0.3s; }
+    .star:nth-child(3)  { width: 2px; height: 2px; top: 35%; left: 40%; animation-delay: 0.6s; }
+    .star:nth-child(4)  { width: 4px; height: 4px; top: 50%; left: 85%; animation-delay: 0.9s; }
+    .star:nth-child(5)  { width: 2px; height: 2px; top: 60%; left: 25%; animation-delay: 1.2s; }
+    .star:nth-child(6)  { width: 3px; height: 3px; top: 75%; left: 55%; animation-delay: 0.4s; }
+    .star:nth-child(7)  { width: 2px; height: 2px; top: 85%; left: 10%; animation-delay: 0.7s; }
+    .star:nth-child(8)  { width: 3px; height: 3px; top: 15%; left: 90%; animation-delay: 1.0s; }
+    .star:nth-child(9)  { width: 2px; height: 2px; top: 45%; left: 5%;  animation-delay: 1.5s; }
+    .star:nth-child(10) { width: 4px; height: 4px; top: 90%; left: 75%; animation-delay: 0.2s; }
+    .star:nth-child(11) { width: 2px; height: 2px; top: 5%;  left: 50%; animation-delay: 0.8s; }
+    .star:nth-child(12) { width: 3px; height: 3px; top: 70%; left: 35%; animation-delay: 1.3s; }
+
+    /* Twinkle animation — tara chamakna */
+    @keyframes twinkle {
+      from { opacity: 0.2; transform: scale(1); }
+      to   { opacity: 1;   transform: scale(1.5); }
+    }
+
+    /* =====================
+       Main Content
+    ===================== */
+    .container {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    /* =====================
+       Heading
+    ===================== */
+    h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+      color: #e0d7ff;
+      /* Text glow effect */
+      text-shadow: 0 0 20px #9d7dfa, 0 0 40px #9d7dfa;
+      animation: headingPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes headingPulse {
+      0%, 100% { text-shadow: 0 0 20px #9d7dfa, 0 0 40px #9d7dfa; }
+      50%       { text-shadow: 0 0 40px #c4b5fd, 0 0 80px #c4b5fd; }
+    }
+
+    p.subtitle {
+      color: #8888aa;
+      font-size: 16px;
+      margin-bottom: 60px;
+    }
+
+    /* =====================
+       Solar System
+    ===================== */
+    .solar-system {
+      position: relative;
+      width: 320px;
+      height: 320px;
+      margin: 0 auto 60px;
+    }
+
+    /* Sun — beech mein */
+    .sun {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 60px;
+      height: 60px;
+      background: #ffd700;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 30px #ffd700, 0 0 60px #ff8800;
+      animation: sunGlow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes sunGlow {
+      from { box-shadow: 0 0 30px #ffd700, 0 0 60px #ff8800; }
+      to   { box-shadow: 0 0 50px #ffd700, 0 0 100px #ff8800; }
+    }
+
+    /* Orbit ring */
+    .orbit {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      border: 1px dashed rgba(255, 255, 255, 0.15);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .orbit-1 { width: 130px; height: 130px; }
+    .orbit-2 { width: 200px; height: 200px; }
+    .orbit-3 { width: 280px; height: 280px; }
+
+    /* Planet — revolve karta hai */
+    .planet-wrapper {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform-origin: 0 0;
+    }
+
+    .planet {
+      position: absolute;
+      border-radius: 50%;
+    }
+
+    /* Planet 1 — neelee */
+    .wrapper-1 {
+      animation: revolve 4s linear infinite;
+    }
+    .planet-1 {
+      width: 18px;
+      height: 18px;
+      background: #4dabf7;
+      top: -9px;
+      left: 65px;
+      box-shadow: 0 0 10px #4dabf7;
+    }
+
+    /* Planet 2 — hare rang ki */
+    .wrapper-2 {
+      animation: revolve 8s linear infinite;
+    }
+    .planet-2 {
+      width: 22px;
+      height: 22px;
+      background: #51cf66;
+      top: -11px;
+      left: 100px;
+      box-shadow: 0 0 10px #51cf66;
+    }
+
+    /* Planet 3 — laal */
+    .wrapper-3 {
+      animation: revolve 14s linear infinite;
+    }
+    .planet-3 {
+      width: 16px;
+      height: 16px;
+      background: #ff6b6b;
+      top: -8px;
+      left: 140px;
+      box-shadow: 0 0 10px #ff6b6b;
+    }
+
+    /* Revolve animation — circle mein ghoomna */
+    @keyframes revolve {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    /* =====================
+       Cards Section
+    ===================== */
+    .cards {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 60px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 28px 24px;
+      width: 180px;
+      cursor: pointer;
+      /* Transition — hover smoothly */
+      transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-12px) scale(1.05);
+      background: rgba(157, 125, 250, 0.15);
+      border-color: rgba(157, 125, 250, 0.5);
+    }
+
+    .card-icon {
+      font-size: 40px;
+      margin-bottom: 12px;
+      display: block;
+      animation: floatIcon 3s ease-in-out infinite;
+    }
+
+    /* Alag alag delay taaki sab ek saath na hilein */
+    .card:nth-child(1) .card-icon { animation-delay: 0s; }
+    .card:nth-child(2) .card-icon { animation-delay: 0.5s; }
+    .card:nth-child(3) .card-icon { animation-delay: 1s; }
+
+    @keyframes floatIcon {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-8px); }
+    }
+
+    .card h3 {
+      font-size: 15px;
+      color: #c4b5fd;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      font-size: 12px;
+      color: #666688;
+      line-height: 1.5;
+    }
+
+    /* =====================
+       Rocket Section
+    ===================== */
+    .rocket-section {
+      margin-bottom: 60px;
+    }
+
+    .rocket-section h2 {
+      font-size: 22px;
+      color: #c4b5fd;
+      margin-bottom: 30px;
+    }
+
+    .launch-pad {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 40px;
+    }
+
+    .rocket {
+      font-size: 50px;
+      display: inline-block;
+      animation: rocketFly 3s ease-in-out infinite;
+      filter: drop-shadow(0 0 15px rgba(157, 125, 250, 0.6));
+    }
+
+    @keyframes rocketFly {
+      0%   { transform: translateY(0) rotate(-5deg); }
+      30%  { transform: translateY(-30px) rotate(5deg); }
+      60%  { transform: translateY(-15px) rotate(-3deg); }
+      100% { transform: translateY(0) rotate(-5deg); }
+    }
+
+    /* =====================
+       Button
+    ===================== */
+    .btn {
+      background: linear-gradient(135deg, #9d7dfa, #c084fc);
+      color: white;
+      border: none;
+      padding: 14px 36px;
+      font-size: 16px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 4px 20px rgba(157, 125, 250, 0.4);
+      margin-top: 20px;
+    }
+
+    .btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 8px 30px rgba(157, 125, 250, 0.7);
+    }
+
+    .btn:active {
+      transform: scale(0.96);
+    }
+
+    /* =====================
+       Footer
+    ===================== */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 20px;
+      color: #444466;
+      font-size: 13px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* =====================
+       Shooting star — special touch
+    ===================== */
+    .shooting-star {
+      position: fixed;
+      top: 20%;
+      left: -100px;
+      width: 100px;
+      height: 2px;
+      background: linear-gradient(to right, transparent, white);
+      animation: shoot 5s linear infinite;
+      opacity: 0;
+    }
+
+    .shooting-star:nth-child(2) {
+      top: 50%;
+      animation-delay: 2.5s;
+    }
+
+    @keyframes shoot {
+      0%   { left: -100px; opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 1; }
+      100% { left: 110%; opacity: 0; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Tare -->
+  <div class="stars">
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+  </div>
+
+  <!-- Toota tara -->
+  <div class="shooting-star"></div>
+  <div class="shooting-star"></div>
+
+  <!-- Main Content -->
+  <div class="container">
+
+    <!-- Heading -->
+    <h1>&#9733; Space World &#9733;</h1>
+    <p class="subtitle">CSS transform aur animation ka magic dekho!</p>
+
+    <!-- Solar System -->
+    <div class="solar-system">
+      <!-- Orbits -->
+      <div class="orbit orbit-1"></div>
+      <div class="orbit orbit-2"></div>
+      <div class="orbit orbit-3"></div>
+
+      <!-- Sun -->
+      <div class="sun"></div>
+
+      <!-- Planets -->
+      <div class="planet-wrapper wrapper-1">
+        <div class="planet planet-1"></div>
+      </div>
+      <div class="planet-wrapper wrapper-2">
+        <div class="planet planet-2"></div>
+      </div>
+      <div class="planet-wrapper wrapper-3">
+        <div class="planet planet-3"></div>
+      </div>
+    </div>
+
+    <!-- Cards -->
+    <div class="cards">
+      <div class="card">
+        <span class="card-icon">&#127776;</span>
+        <h3>Sun</h3>
+        <p>Glow animation se chamakta hai</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">&#127759;</span>
+        <h3>Planets</h3>
+        <p>Revolve animation se ghoomte hain</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">&#10024;</span>
+        <h3>Stars</h3>
+        <p>Twinkle se chamakate hain</p>
+      </div>
+    </div>
+
+    <!-- Rocket -->
+    <div class="rocket-section">
+      <h2>Rocket launch hone wala hai!</h2>
+      <div class="launch-pad">
+        <span class="rocket">&#128640;</span>
+      </div>
+      <button class="btn" onclick="alert('3... 2... 1... Launch! &#128640;')">
+        Launch Karo!
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>Banaya: Ek Naye CSS Student ne &mdash; Transform &amp; Animation seekh ke &#128512;</p>
+  </footer>
+
+</body>
+</html>
