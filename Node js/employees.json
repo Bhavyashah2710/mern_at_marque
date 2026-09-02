@@ -1,0 +1,231 @@
+
+
+
+
+
+
+
+
+
+[
+  {
+    "employee_id": "EMP101",
+    "name": "rohan",
+    "salary": 5000,
+    "age": 14,
+    "country": "london",
+    "department": 158,
+    "interests": [
+      {
+        "vlogs": ["daily_vlogs"]
+      },
+      {
+        "learning": ["science"]
+      },
+      {
+        "creativity": ["art"]
+      },
+      {
+        "self_growth": ["motivational"]
+      }
+    ],
+    "junior_assigned": ["JEMP201", "JEMP202"],
+    "products_in_cart": [
+      {"Pname": "Shirt", "cost": 500},
+      {"Pname": "Headphones", "cost": 1800}
+    ]
+  },
+  {
+    "employee_id": "EMP102",
+    "name": "bhupendr",
+    "salary": 7000,
+    "age": 50,
+    "country": "india",
+    "department": 58,
+    "interests": [
+      {"food": ["food"]},
+      {"vlogs": ["travel_vlogs"]},
+      {"creativity": ["art"]},
+      {"storytelling": ["storytelling"]}
+    ],
+    "junior_assigned": ["JEMP203"],
+    "products_in_cart": [
+      {"Pname": "Shirt", "cost": 500},
+      {"Pname": "Shoes", "cost": 2500},
+      {"Pname": "Watch", "cost": 3500}
+    ]
+  },
+  {
+    "employee_id": "EMP103",
+    "name": "kartik",
+    "salary": 300,
+    "age": 2,
+    "country": "america",
+    "department": 48,
+    "interests": [
+      {"sports": ["sports"]},
+      {"news": ["politics"]},
+      {"gaming": ["online_gaming"]},
+      {"learning": ["science"]}
+    ],
+    "junior_assigned": ["JEMP204", "JEMP205"],
+    "products_in_cart": [
+      {"Pname": "Football", "cost": 1200},
+      {"Pname": "Shoes", "cost": 2500}
+    ]
+  },
+  {
+    "employee_id": "EMP104",
+    "name": "suraj",
+    "salary": 200,
+    "age": 19,
+    "country": "russia",
+    "department": 158,
+    "interests": [
+      {"vlogs": ["travel_vlogs"]},
+      {"vehicles": ["bike"]},
+      {"news": ["politics"]},
+      {"food": ["food"]}
+    ],
+    "junior_assigned": ["JEMP206"],
+    "products_in_cart": [
+      {"Pname": "Bike Helmet", "cost": 2200},
+      {"Pname": "Watch", "cost": 3500}
+    ]
+  },
+  {
+    "employee_id": "EMP105",
+    "name": "aryan",
+    "salary": 100,
+    "age": 70,
+    "country": "japan",
+    "department": 48,
+    "interests": [
+      {"history": ["history"]},
+      {"self_growth": ["motivational"]},
+      {"news": ["news"]},
+      {"learning": ["science"]}
+    ],
+    "junior_assigned": ["JEMP207", "JEMP208", "JEMP209"],
+    "products_in_cart": [
+      {"Pname": "Books", "cost": 900},
+      {"Pname": "Laptop", "cost": 65000}
+    ]
+  },
+  {
+    "employee_id": "EMP106",
+    "name": "aryan",
+    "salary": 8800,
+    "age": 40,
+    "country": "japan",
+    "department": 58,
+    "interests": [
+      {"coding": ["coding"]},
+      {"technology": ["technology"]},
+      {"learning": ["science"]},
+      {"creativity": ["art"]}
+    ],
+    "junior_assigned": ["JEMP210"],
+    "products_in_cart": [
+      {"Pname": "Laptop", "cost": 65000},
+      {"Pname": "Mouse", "cost": 700},
+      {"Pname": "Keyboard", "cost": 1500}
+    ]
+  },
+  {
+    "employee_id": "EMP107",
+    "name": "jatin",
+    "salary": 10000,
+    "age": 12,
+    "country": "russia",
+    "department": 48,
+    "interests": [
+      {"gaming": ["gaming", "online_gaming"]},
+      {"sports": ["sports"]},
+      {"anime": ["anime"]}
+    ],
+    "junior_assigned": ["JEMP211", "JEMP212"],
+    "products_in_cart": [
+      {"Pname": "Gaming Mouse", "cost": 2200},
+      {"Pname": "Headphones", "cost": 1800}
+    ]
+  },
+  {
+    "employee_id": "EMP108",
+    "name": "aaditya",
+    "salary": 2000,
+    "age": 19,
+    "country": "india",
+    "department": 44,
+    "interests": [
+      {"business": ["marketing", "business"]},
+      {"self_growth": ["motivational"]},
+      {"storytelling": ["storytelling"]}
+    ],
+    "junior_assigned": ["JEMP213"],
+    "products_in_cart": [
+      {"Pname": "Notebook", "cost": 150},
+      {"Pname": "Pen", "cost": 50},
+      {"Pname": "Shirt", "cost": 500}
+    ]
+  },
+  {
+    "employee_id": "EMP109",
+    "name": "sachi",
+    "salary": 100,
+    "age": 2,
+    "country": "uganda",
+    "department": 158,
+    "interests": [
+      {"fun": ["cartoons"]},
+      {"food": ["food"]},
+      {"learning": ["science"]},
+      {"vlogs": ["daily_vlogs"]}
+    ],
+    "junior_assigned": ["JEMP214"],
+    "products_in_cart": [
+      {"Pname": "Chocolate", "cost": 100},
+      {"Pname": "Books", "cost": 900}
+    ]
+  },
+  {
+    "employee_id": "EMP110",
+    "name": "khushi",
+    "salary": 3500,
+    "age": 99,
+    "country": "brazil",
+    "department": 58,
+    "interests": [
+      {"vlogs": ["travel_vlogs"]},
+      {"dance": ["dance"]},
+      {"food": ["food"]},
+      {"creativity": ["art"]}
+    ],
+    "junior_assigned": ["JEMP215", "JEMP216"],
+    "products_in_cart": [
+      {"Pname": "Dress", "cost": 1800},
+      {"Pname": "Watch", "cost": 3500},
+      {"Pname": "Shoes", "cost": 2500}
+    ]
+  },
+  {
+    "employee_id": "EMP111",
+    "name": "parul",
+    "salary": 50000,
+    "age": 34,
+    "country": "jamaica",
+    "department": 2,
+    "interests": [
+      {"leadership": ["leadership"]},
+      {"business": ["business"]},
+      {"technology": ["technology"]},
+      {"self_growth": ["motivational"]}
+    ],
+    "junior_assigned": ["JEMP217", "JEMP218", "JEMP219"],
+    "products_in_cart": [
+      {"Pname": "Laptop", "cost": 65000},
+      {"Pname": "Watch", "cost": 3500},
+      {"Pname": "Phone", "cost": 45000}
+    ]
+  }
+]
