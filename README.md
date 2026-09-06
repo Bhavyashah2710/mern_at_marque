@@ -10,8 +10,8 @@ This repository contains my classwork, practice exercises, experiments, and back
 
 | Area | Status | What this repository shows |
 |---|---|---|
-| HTML & CSS | ✅ Completed | Regular HTML/CSS practice and page-building exercises |
-| JavaScript | ✅ Completed | JavaScript exercises, arrays, objects, functions, conditions, loops, and data processing |
+| HTML & CSS | ✅ Completed | HTML/CSS practice and page-building exercises |
+| JavaScript | ✅ Completed | JavaScript exercises, logic building, arrays, objects, and data processing |
 | Node.js | 🟡 In Progress | Modules, `fs`, `path`, `http`, JSON handling, servers, routing, and Nodemon |
 | Express.js | 🔜 Next | Planned backend learning step |
 | MongoDB | 🔜 Next | Planned database learning step |
@@ -25,22 +25,16 @@ This repository contains my classwork, practice exercises, experiments, and back
 ```text
 mern_at_marque/
 │
-├── html & css/       # HTML and CSS learning exercises
+├── html & css/       # HTML & CSS learning exercises
 │
-├── js/               # JavaScript practice and exercises
+├── js/               # JavaScript practice & exercises
 │
-├── Node js/          # Node.js learning and backend experiments
-│   ├── 1st_sep.js
-│   ├── 2nd_sep.js
-│   ├── 5th_sep.js
-│   ├── first_sep.js
-│   ├── employees.json
-│   ├── index.html
-│   ├── package.json
-│   └── package-lock.json
+├── Node js/          # Node.js learning & backend practice
 │
 └── README.md
 ```
+
+The repository is intentionally organized by technology so that the learning progress is easy to follow without unnecessary file-level details.
 
 ---
 
@@ -56,7 +50,7 @@ The focus is on understanding HTML structure, page creation, CSS styling, and bu
 
 The `js` folder contains dated JavaScript exercises and practical assignments.
 
-Some of the concepts visible in the work include:
+Some of the concepts practiced include:
 
 - Arrays and objects
 - Functions
@@ -67,13 +61,13 @@ Some of the concepts visible in the work include:
 - Working with employee-style datasets
 - Building logic through small practical exercises
 
-This folder represents the transition from basic JavaScript syntax to solving problems with real data and logic.
+This stage helped move from basic JavaScript syntax toward solving problems with real data and logic.
 
 ---
 
 ## 🟢 Node.js — Currently Learning
 
-Node.js is the current stage of the learning journey, and the code already covers several important backend fundamentals.
+Node.js is the current stage of the learning journey. The work in this folder covers several important backend fundamentals.
 
 ### Topics currently practiced
 
@@ -95,19 +89,17 @@ Node.js is the current stage of the learning journey, and the code already cover
 - Handling a `404 Page Not Found`
 - Nodemon for development
 
-### Example Node.js routing
-
-The current practice includes routes such as:
+### Example routing
 
 ```text
-/        → Home
-/home   → Home
-/about  → About
-/contact → Contact
-other   → 404 Page Not Found
+/         → Home
+/home     → Home
+/about    → About
+/contact  → Contact
+other     → 404 Page Not Found
 ```
 
-For example, `5th_sep.js` demonstrates a basic HTTP server that serves an HTML page and handles multiple routes.
+The current Node.js work is focused on understanding how the backend works at a fundamental level before moving deeper into Express.js and the rest of the MERN stack.
 
 ---
 
@@ -152,7 +144,7 @@ React
 MERN Stack 🚀
 ```
 
-The roadmap is not just about completing topics — the goal is to understand each technology properly and apply it through projects.
+The goal is not simply to complete topics, but to understand each technology properly and apply it through projects.
 
 ---
 
