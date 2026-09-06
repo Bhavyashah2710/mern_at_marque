@@ -8,7 +8,7 @@
     "department": 158,
     "interests": [
       {
-        "vlogs": [  
+        "vlogs": [
           "daily_vlogs"
         ]
       },
@@ -18,7 +18,7 @@
         ]
       },
       {
-        "creativity": [ 
+        "creativity": [
           "art"
         ]
       },
@@ -491,5 +491,21 @@
         "cost": 45000
       }
     ]
+  },
+  {
+    "employee_id": "EMP112",
+    "name": "bhavya",
+    "salary": 25000,
+    "age": 22,
+    "country": "india",
+    "department": 58
+  },
+  {
+    "employee_id": "EMP113",
+    "name": "rahul",
+    "salary": 30000,
+    "age": 25,
+    "country": "india",
+    "department": 44
   }
 ]
