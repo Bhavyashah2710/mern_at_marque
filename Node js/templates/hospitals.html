@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Registered Hospitals | BVSHAH Healthcare Network</title>
+
+  <meta name="description"
+    content="Explore certified hospital network facilities, bed capacities, emergency centers, and clinical units under BVSHAH Healthcare.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    .hospitals-header-wrap {
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .count-indicator {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--slate-600);
+      background: var(--white);
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--slate-200);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .status-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.25rem 0.65rem;
+      border-radius: var(--radius-full);
+      text-transform: capitalize;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .status-active {
+      background: var(--success-light);
+      color: #065f46;
+    }
+
+    .status-onboarding {
+      background: var(--amber-light);
+      color: #92400e;
+    }
+
+    .status-suspended {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .hospital-meta-strip {
+      display: flex;
+      gap: 1.25rem;
+      margin-bottom: 1rem;
+      font-size: 0.825rem;
+      color: var(--slate-500);
+    }
+
+    .hospital-stat-pill {
+      background: var(--slate-50);
+      padding: 0.35rem 0.65rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--slate-200);
+      font-weight: 600;
+      color: var(--slate-700);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .details-btn {
+      margin-top: 1rem;
+      width: 100%;
+      border: none;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-weight: 600;
+      padding: 0.65rem 1rem;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .details-btn:hover {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      padding: 1rem;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-container {
+      background: var(--white);
+      width: 100%;
+      max-width: 820px;
+      max-height: 90vh;
+      border-radius: var(--radius-lg);
+      overflow-y: auto;
+      box-shadow: var(--shadow-xl);
+      animation: modalFade 0.2s ease-out;
+    }
+
+    @keyframes modalFade {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .modal-header {
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid var(--slate-200);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: var(--white);
+      z-index: 10;
+    }
+
+    .modal-close-btn {
+      background: var(--slate-100);
+      border: none;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      font-size: 1.25rem;
+      color: var(--slate-700);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .modal-close-btn:hover {
+      background: var(--slate-200);
+      color: var(--slate-900);
+    }
+
+    .modal-body {
+      padding: 2rem;
+    }
+
+    .modal-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .info-tile {
+      background: var(--slate-50);
+      padding: 1rem 1.25rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--slate-200);
+    }
+
+    .info-tile-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--slate-400);
+      margin-bottom: 0.35rem;
+    }
+
+    .info-tile-val {
+      font-weight: 600;
+      color: var(--slate-800);
+      font-size: 1rem;
+    }
+
+    .modal-sec-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--slate-900);
+      margin: 1.5rem 0 0.85rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--slate-100);
+    }
+
+    .chip-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .chip-item {
+      font-size: 0.8rem;
+      padding: 0.3rem 0.7rem;
+      background: var(--slate-100);
+      border-radius: var(--radius-full);
+      color: var(--slate-700);
+      font-weight: 500;
+    }
+
+    @media (max-width: 640px) {
+      .modal-grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-body {
+        padding: 1.25rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <header class="header">
+
+    <div class="container header-container">
+
+      <a href="index.html" class="logo" aria-label="BVSHAH Healthcare Home">
+
+        <div class="logo-badge" aria-hidden="true">
+
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+
+            <path d="M12 6v12M6 12h12" />
+
+          </svg>
+
+        </div>
+
+        <span>
+          BVSHAH
+          <span class="logo-accent">Healthcare</span>
+        </span>
+
+      </a>
+
+
+      <nav aria-label="Main Navigation">
+
+        <ul class="nav-links" id="navLinks">
+
+          <li>
+            <a href="index.html" class="nav-link">Home</a>
+          </li>
+
+          <li>
+            <a href="about.html" class="nav-link">About</a>
+          </li>
+
+          <li>
+            <a href="hospitals.html" class="nav-link active">Hospitals</a>
+          </li>
+
+          <li>
+            <a href="services.html" class="nav-link">Services</a>
+          </li>
+
+          <li>
+            <a href="contact.html" class="nav-link">Contact</a>
+          </li>
+
+        </ul>
+
+      </nav>
+
+
+      <div class="nav-actions">
+
+        <a href="hospitals.html"
+          class="btn btn-primary"
+          style="padding: 0.6rem 1.25rem; font-size: 0.9rem;">
+
+          Find a Hospital
+
+        </a>
+
+      </div>
+
+
+      <button
+        class="hamburger-btn"
+        id="hamburgerBtn"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false">
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+      </button>
+
+    </div>
+
+  </header>
+
+
+  <!-- HOSPITALS MAIN SECTION -->
+
+  <section class="hospitals-section" id="hospitals">
+
+    <div class="container">
+
+      <div class="section-header">
+
+        <div class="section-badge">
+          Network Directory
+        </div>
+
+        <h1 class="section-title">
+          Registered Hospitals & Medical Centers
+        </h1>
+
+        <p class="section-subtitle">
+          Real-time clinical capacity, verified accreditations,
+          and specialty services across all participating network units.
+        </p>
+
+      </div>
+
+
+      <!-- FILTER & SEARCH PANEL -->
+
+      <div class="search-filter-card">
+
+        <div
+          class="filter-grid"
+          style="grid-template-columns: 2fr 1.2fr 1.2fr 1fr auto;">
+
+          <div class="filter-group">
+
+            <label
+              for="searchName"
+              class="filter-label">
+
+              Search Hospital or Specialty
+
+            </label>
+
+            <input
+              type="text"
+              id="searchName"
+              class="filter-input"
+              placeholder="Search by name, doctor, city...">
+
+          </div>
+
+
+          <div class="filter-group">
+
+            <label
+              for="filterLocation"
+              class="filter-label">
+
+              Location / City
+
+            </label>
+
+            <select
+              id="filterLocation"
+              class="filter-select">
+
+              <option value="all">
+                All Locations
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="filter-group">
+
+            <label
+              for="filterType"
+              class="filter-label">
+
+              Hospital Type
+
+            </label>
+
+            <select
+              id="filterType"
+              class="filter-select">
+
+              <option value="all">
+                All Types
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="filter-group">
+
+            <label
+              for="filterStatus"
+              class="filter-label">
+
+              Network Status
+
+            </label>
+
+            <select
+              id="filterStatus"
+              class="filter-select">
+
+              <option value="all">
+                All Status
+              </option>
+
+              <option value="active">
+                Active
+              </option>
+
+              <option value="onboarding">
+                Onboarding
+              </option>
+
+              <option value="suspended">
+                Suspended
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <button
+            id="resetFiltersBtn"
+            class="btn btn-secondary"
+            style="height: 46px;"
+            type="button">
+
+            Reset
+
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- COUNTER HEADER -->
+
+      <div class="hospitals-header-wrap">
+
+        <h3 style="font-size: 1.25rem;">
+          Available Facilities
+        </h3>
+
+        <div
+          class="count-indicator"
+          id="resultCount">
+
+          Loading hospitals...
+
+        </div>
+
+      </div>
+
+
+      <!-- DYNAMIC HOSPITALS GRID -->
+
+      <div
+        class="hospitals-grid"
+        id="hospitalsGrid">
+
+      </div>
+
+
+      <!-- NO RESULTS -->
+
+      <div
+        id="noResults"
+        class="no-results"
+        style="display: none;">
+
+        <svg
+          class="no-results-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2">
+
+          <circle cx="11" cy="11" r="8"></circle>
+
+          <line
+            x1="21"
+            y1="21"
+            x2="16.65"
+            y2="16.65">
+          </line>
+
+        </svg>
+
+        <h3>
+          No Matching Hospitals Found
+        </h3>
+
+        <p>
+          Try resetting the search terms
+          or clearing your location/type filters.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- DETAIL MODAL -->
+
+  <div
+    class="modal-overlay"
+    id="hospitalModal"
+    aria-hidden="true"
+    role="dialog">
+
+    <div class="modal-container">
+
+      <div class="modal-header">
+
+        <div>
+
+          <div
+            id="modalTypeBadge"
+            class="section-badge"
+            style="margin-bottom: 0.5rem;">
+
+            Hospital Type
+
+          </div>
+
+          <h2
+            id="modalHospitalName"
+            style="font-size: 1.6rem;">
+
+            Hospital Name
+
+          </h2>
+
+          <p
+            id="modalHospitalLocation"
+            style="color: var(--slate-500); font-size: 0.9rem;">
+
+            City, Country
+
+          </p>
+
+        </div>
+
+
+        <button
+          class="modal-close-btn"
+          id="modalCloseBtn"
+          aria-label="Close modal">
+
+          &times;
+
+        </button>
+
+      </div>
+
+
+      <div
+        class="modal-body"
+        id="modalBodyContent">
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- FOOTER -->
+
+  <footer class="footer">
+
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div class="footer-brand">
+
+          <a
+            href="index.html"
+            class="logo"
+            style="color: var(--white); margin-bottom: 1rem;">
+
+            <div class="logo-badge">
+
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5">
+
+                <path d="M12 6v12M6 12h12" />
+
+              </svg>
+
+            </div>
+
+            <span>
+              BVSHAH
+              <span class="logo-accent">Healthcare</span>
+            </span>
+
+          </a>
+
+
+          <p>
+            Connecting patients with trusted healthcare
+            facilities through a reliable digital ecosystem.
+          </p>
+
+        </div>
+
+
+        <div>
+
+          <h4 class="footer-title">
+            Quick Links
+          </h4>
+
+          <ul class="footer-links-list">
+
+            <li>
+              <a href="index.html">
+                Home
+              </a>
+            </li>
+
+            <li>
+              <a href="about.html">
+                About
+              </a>
+            </li>
+
+            <li>
+              <a href="hospitals.html">
+                Hospitals
+              </a>
+            </li>
+
+            <li>
+              <a href="services.html">
+                Services
+              </a>
+            </li>
+
+            <li>
+              <a href="contact.html">
+                Contact
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+
+        <div>
+
+          <h4 class="footer-title">
+            Healthcare
+          </h4>
+
+          <ul class="footer-links-list">
+
+            <li>
+              <a href="services.html">
+                Emergency Care
+              </a>
+            </li>
+
+            <li>
+              <a href="services.html">
+                OPD Services
+              </a>
+            </li>
+
+            <li>
+              <a href="services.html">
+                Diagnostics
+              </a>
+            </li>
+
+            <li>
+              <a href="services.html">
+                Doctor Consultation
+              </a>
+            </li>
+
+            <li>
+              <a href="services.html">
+                Pharmacy
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+
+        <div>
+
+          <h4 class="footer-title">
+            Network Contact
+          </h4>
+
+          <ul
+            class="footer-links-list"
+            style="color: var(--slate-400);">
+
+            <li>
+              Gujarat, India
+            </li>
+
+            <li>
+              support@bvshahhealthcare.com
+            </li>
+
+            <li>
+              +91 XXXXX XXXXX
+            </li>
+
+            <li
+              style="margin-top: 0.5rem; color: var(--teal);">
+
+              24/7 Central Helpline
+
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+
+      <div class="footer-bottom-bar">
+
+        <div>
+          &copy; 2026 BVSHAH Healthcare.
+          All Rights Reserved.
+        </div>
+
+        <div class="footer-legal-links">
+
+          <a href="index.html">
+            Privacy Policy
+          </a>
+
+          <a href="index.html">
+            Terms of Service
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <p class="footer-disclaimer">
+
+        Demo platform — hospital information and statistics
+        shown on this website are for demonstration purposes.
+
+      </p>
+
+    </div>
+
+  </footer>
+
+
+  <script src="js/script.js"></script>
+
+
+  <!-- FETCH HOSPITAL DATA FROM NODE BACKEND -->
+
+  <script>
+
+    let hospitalsData = [];
+
+
+    fetch("/api/hospitals")
+
+      .then((response) => {
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch hospital data");
+        }
+
+        return response.json();
+
+      })
+
+      .then((data) => {
+
+        hospitalsData = data;
+
+        console.log(
+          "Hospital data from backend:",
+          data
+        );
+
+        initializeHospitals();
+
+      })
+
+      .catch((error) => {
+
+        console.error(
+          "Error fetching hospital data:",
+          error
+        );
+
+      });
+
+
+    function initializeHospitals() {
+
+      const grid =
+        document.getElementById("hospitalsGrid");
+
+      const locationSelect =
+        document.getElementById("filterLocation");
+
+      const typeSelect =
+        document.getElementById("filterType");
+
+      const statusSelect =
+        document.getElementById("filterStatus");
+
+      const searchInput =
+        document.getElementById("searchName");
+
+      const resetBtn =
+        document.getElementById("resetFiltersBtn");
+
+      const noResults =
+        document.getElementById("noResults");
+
+      const resultCount =
+        document.getElementById("resultCount");
+
+
+      const cities = [
+        ...new Set(
+          hospitalsData.map(
+            h => h.address.city
+          )
+        )
+      ].sort();
+
+
+      cities.forEach(city => {
+
+        const opt =
+          document.createElement("option");
+
+        opt.value =
+          city.toLowerCase();
+
+        opt.textContent =
+          city;
+
+        locationSelect.appendChild(opt);
+
+      });
+
+
+      const types = [
+        ...new Set(
+          hospitalsData.map(
+            h => h.type
+          )
+        )
+      ].sort();
+
+
+      types.forEach(type => {
+
+        const opt =
+          document.createElement("option");
+
+        opt.value =
+          type.toLowerCase();
+
+        opt.textContent =
+          type;
+
+        typeSelect.appendChild(opt);
+
+      });
+
+
+      function renderHospitals(list) {
+
+        grid.innerHTML = "";
+
+        resultCount.textContent =
+          `Showing ${list.length} of ${hospitalsData.length} facilities`;
+
+
+        if (list.length === 0) {
+
+          noResults.style.display =
+            "block";
+
+          return;
+
+        }
+
+
+        noResults.style.display =
+          "none";
+
+
+        list.forEach(h => {
+
+          const card =
+            document.createElement("article");
+
+          card.className =
+            "hospital-card";
+
+
+          const statusClass =
+            `status-${h.networkStatus.status}`;
+
+
+          card.innerHTML = `
+
+            <div class="hospital-banner">
+
+              <svg
+                class="hospital-banner-bg-icon"
+                viewBox="0 0 24 24"
+                fill="currentColor">
+
+                <path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-7 14h-2v-4H6v-2h4V7h2v4h4v2h-4v4z"/>
+
+              </svg>
+
+
+              <span class="hospital-type-badge">
+
+                ${h.type}
+
+              </span>
+
+
+              <span class="status-badge ${statusClass}">
+
+                <span
+                  class="pulse-dot"
+                  style="width: 5px; height: 5px;">
+                </span>
+
+                ${h.networkStatus.status}
+
+              </span>
+
+            </div>
+
+
+            <div class="hospital-body">
+
+              <h3 class="hospital-name">
+
+                ${h.name}
+
+              </h3>
+
+
+              <div class="hospital-location">
+
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2">
+
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+
+                  <circle
+                    cx="12"
+                    cy="10"
+                    r="3"/>
+
+                </svg>
+
+
+                <span>
+
+                  ${h.address.street},
+                  ${h.address.city},
+                  ${h.address.country}
+
+                </span>
+
+              </div>
+
+
+              <div class="hospital-meta-strip">
+
+                <div class="hospital-stat-pill">
+
+                  <strong>
+                    ${h.capacity.availableBeds}
+                  </strong>
+
+                  /
+                  ${h.capacity.totalBeds}
+                  Beds Free
+
+                </div>
+
+
+                <div class="hospital-stat-pill">
+
+                  <strong>
+                    ${h.capacity.icuBeds}
+                  </strong>
+
+                  ICU Units
+
+                </div>
+
+              </div>
+
+
+              <div class="hospital-rating-row">
+
+                <div class="rating-stars">
+
+                  <span>
+                    ★ ${h.ratings.overallRating}
+                  </span>
+
+                  <span
+                    style="color: var(--slate-400);
+                    font-weight: 400;
+                    font-size: 0.8rem;">
+
+                    (${h.ratings.totalReviews} ratings)
+
+                  </span>
+
+                </div>
+
+
+                <span
+                  style="font-size: 0.78rem;
+                  font-weight: 600;
+                  color: var(--teal);">
+
+                  ${h.category}
+
+                </span>
+
+              </div>
+
+
+              <div class="services-tag-list">
+
+                ${
+                  h.departments
+                    .slice(0, 4)
+                    .map(
+                      dep =>
+                        `<span class="service-tag">${dep}</span>`
+                    )
+                    .join("")
+                }
+
+              </div>
+
+
+              <button
+                class="details-btn"
+                onclick="openHospitalModal('${h.id}')">
+
+                View Full Hospital Spec
+
+              </button>
+
+            </div>
+
+          `;
+
+
+          grid.appendChild(card);
+
+        });
+
+      }
+
+
+      function applyFilters() {
+
+        const query =
+          searchInput.value
+            .toLowerCase()
+            .trim();
+
+
+        const selLoc =
+          locationSelect.value
+            .toLowerCase();
+
+
+        const selType =
+          typeSelect.value
+            .toLowerCase();
+
+
+        const selStatus =
+          statusSelect.value
+            .toLowerCase();
+
+
+        const filtered =
+          hospitalsData.filter(h => {
+
+            const matchName =
+              !query ||
+              h.name
+                .toLowerCase()
+                .includes(query) ||
+
+              h.address.city
+                .toLowerCase()
+                .includes(query) ||
+
+              h.departments.some(
+                d =>
+                  d.toLowerCase()
+                    .includes(query)
+              );
+
+
+            const matchLoc =
+              selLoc === "all" ||
+              h.address.city
+                .toLowerCase() === selLoc;
+
+
+            const matchType =
+              selType === "all" ||
+              h.type
+                .toLowerCase() === selType;
+
+
+            const matchStatus =
+              selStatus === "all" ||
+              h.networkStatus.status
+                .toLowerCase() === selStatus;
+
+
+            return (
+              matchName &&
+              matchLoc &&
+              matchType &&
+              matchStatus
+            );
+
+          });
+
+
+        renderHospitals(filtered);
+
+      }
+
+
+      searchInput.addEventListener(
+        "input",
+        applyFilters
+      );
+
+
+      locationSelect.addEventListener(
+        "change",
+        applyFilters
+      );
+
+
+      typeSelect.addEventListener(
+        "change",
+        applyFilters
+      );
+
+
+      statusSelect.addEventListener(
+        "change",
+        applyFilters
+      );
+
+
+      resetBtn.addEventListener(
+        "click",
+        () => {
+
+          searchInput.value = "";
+
+          locationSelect.value = "all";
+
+          typeSelect.value = "all";
+
+          statusSelect.value = "all";
+
+          renderHospitals(
+            hospitalsData
+          );
+
+        }
+      );
+
+
+      renderHospitals(
+        hospitalsData
+      );
+
+
+      window.openHospitalModal =
+        function (hospId) {
+
+          const hospital =
+            hospitalsData.find(
+              h => h.id === hospId
+            );
+
+
+          if (!hospital) {
+            return;
+          }
+
+
+          document.getElementById(
+            "modalTypeBadge"
+          ).textContent =
+            hospital.type +
+            " • " +
+            hospital.category;
+
+
+          document.getElementById(
+            "modalHospitalName"
+          ).textContent =
+            hospital.name;
+
+
+          document.getElementById(
+            "modalHospitalLocation"
+          ).textContent =
+            `${hospital.address.street},
+             ${hospital.address.city},
+             ${hospital.address.state},
+             ${hospital.address.country}`;
+
+
+          const content = `
+
+            <div class="modal-grid-2">
+
+              <div class="info-tile">
+
+                <div class="info-tile-title">
+                  Bed Capacity
+                </div>
+
+                <div class="info-tile-val">
+
+                  ${hospital.capacity.totalBeds}
+                  Total
+                  (
+                  ${hospital.capacity.availableBeds}
+                  Available
+                  )
+
+                </div>
+
+              </div>
+
+
+              <div class="info-tile">
+
+                <div class="info-tile-title">
+                  Critical Care
+                </div>
+
+                <div class="info-tile-val">
+
+                  ${hospital.capacity.icuBeds}
+                  ICU Beds
+                  •
+                  ${hospital.capacity.operationTheatres}
+                  OT Units
+
+                </div>
+
+              </div>
+
+
+              <div class="info-tile">
+
+                <div class="info-tile-title">
+                  Medical Staff
+                </div>
+
+                <div class="info-tile-val">
+
+                  ${hospital.staff.doctors.total}
+                  Doctors
+                  •
+                  ${hospital.staff.nurses.total}
+                  Nurses
+
+                </div>
+
+              </div>
+
+
+              <div class="info-tile">
+
+                <div class="info-tile-title">
+                  Emergency Helpline
+                </div>
+
+                <div
+                  class="info-tile-val"
+                  style="color: var(--primary);">
+
+                  ${hospital.contact.emergencyPhone}
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <h4 class="modal-sec-title">
+              Quality Accreditations
+            </h4>
+
+
+            <div class="chip-cloud">
+
+              ${
+                hospital.accreditations
+                  .map(
+                    acc =>
+                      `<span class="chip-item">🛡️ ${acc}</span>`
+                  )
+                  .join("")
+              }
+
+            </div>
+
+
+            <h4 class="modal-sec-title">
+              Clinical Departments
+            </h4>
+
+
+            <div class="chip-cloud">
+
+              ${
+                hospital.departments
+                  .map(
+                    dep =>
+                      `<span class="chip-item">${dep}</span>`
+                  )
+                  .join("")
+              }
+
+            </div>
+
+
+            <div
+              style="margin-top: 2rem;
+              display: flex;
+              gap: 1rem;
+              flex-wrap: wrap;">
+
+              <a
+                href="${hospital.contact.website}"
+                target="_blank"
+                class="btn btn-primary"
+                style="flex: 1;">
+
+                Visit Official Website
+
+              </a>
+
+
+              <button
+                class="btn btn-secondary"
+                onclick="closeModal()">
+
+                Close
+
+              </button>
+
+            </div>
+
+          `;
+
+
+          document.getElementById(
+            "modalBodyContent"
+          ).innerHTML = content;
+
+
+          document.getElementById(
+            "hospitalModal"
+          ).classList.add("active");
+
+        };
+
+
+      window.closeModal =
+        function () {
+
+          document.getElementById(
+            "hospitalModal"
+          ).classList.remove("active");
+
+        };
+
+
+      document.getElementById(
+        "modalCloseBtn"
+      ).addEventListener(
+        "click",
+        closeModal
+      );
+
+
+      document.getElementById(
+        "hospitalModal"
+      ).addEventListener(
+        "click",
+        (e) => {
+
+          if (
+            e.target.id === "hospitalModal"
+          ) {
+
+            closeModal();
+
+          }
+
+        }
+      );
+
+    }
+
+  </script>
+
+</body>
+
+</html>
